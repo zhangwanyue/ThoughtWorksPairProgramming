@@ -53,7 +53,7 @@ public class CellMatrix {
      * @param y
      * @return
      */
-    public int getSurroundLiveCellNum(int x, int y){
+    public static int getSurroundLiveCellNum(int[][] matrix, int x, int y){
         return 0;
     }
 
