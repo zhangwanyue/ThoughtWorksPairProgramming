@@ -44,7 +44,13 @@ public class CellMatrix {
      * @return
      */
     public int[][] copyMatrix(){
-        return null;
+        int[][] copy_matrix = new int[height][width];
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                copy_matrix[i][j] = matrix[i][j];
+            }
+        }
+        return copy_matrix;
     }
 
     /**
@@ -94,6 +100,7 @@ public class CellMatrix {
      * @return
      */
     public CellMatrix transform(){
+
         return null;
     }
 
