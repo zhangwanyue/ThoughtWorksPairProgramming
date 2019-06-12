@@ -99,9 +99,13 @@ public class CellMatrix {
      * @return
      */
     public CellMatrix transform(){
-
-
-        return null;
+        int[][] copy_matrix = copyMatrix();
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                matrix[i][j] = transformCell(copy_matrix, i, j);
+            }
+        }
+        return this;
     }
 
     /**
