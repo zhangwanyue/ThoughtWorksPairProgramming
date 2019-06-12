@@ -8,7 +8,6 @@ import org.junit.Test;
 public class CellMatrixTest {
     @Before
     public void init() {
-//        System.out.println("init");
     }
 
     @Test

@@ -14,7 +14,6 @@ public class FileUtilsTest {
 
     @Before
     public void init(){
-
     }
 
     @Test
