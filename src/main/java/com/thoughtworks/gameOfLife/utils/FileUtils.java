@@ -53,6 +53,26 @@ public class FileUtils {
         }
         return cellMatrix;
     }
+
+    /**
+     * 自定义策略生成一个随机化矩阵
+     * @return
+     */
+    public static CellMatrix randomInitMatrix(){
+        int random_height = (int)(Math.random()*30);
+        int random_width = (int)(Math.random()*30);
+
+        int[][] matrix_random = new int[random_height][random_width];
+        for(int i=0; i<random_height; i++){
+            for(int j=0; j<random_width; j++){
+                matrix_random[i][j] = Math.random()>0.8?1:0;
+            }
+        }
+
+        CellMatrix cellMatrix = new CellMatrix(random_height, random_width, matrix_random);
+        return cellMatrix;
+    }
+
 }
 
 

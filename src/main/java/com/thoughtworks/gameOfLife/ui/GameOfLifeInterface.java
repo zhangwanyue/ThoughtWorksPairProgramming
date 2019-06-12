@@ -10,19 +10,20 @@ import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
 
 public class GameOfLifeInterface extends JFrame {
-    //游戏状态
+    // 游戏状态
     private volatile boolean running = false;
-    //默认动画间隔（默认时长为200）
+    // 默认动画间隔（默认时长为200）
     private static int DEFAULT_DURATION = 200;
     private int duration = DEFAULT_DURATION;
-    //控件
+    // 控件
     private JPanel controlPanel;
     private JPanel cellPanel;
     private JButton startGameButton;
     private JButton chooseFileButton;
     private JButton pauseButton;
+    private JButton randomInitButton;
     private JTextField durationTextField;
-    //cellMatrix
+    // cellMatrix
     private volatile CellMatrix cellMatrix;
 
     public GameOfLifeInterface() throws HeadlessException {
@@ -37,15 +38,20 @@ public class GameOfLifeInterface extends JFrame {
         pauseButton.addActionListener(new pauseGameActionListener());
         durationTextField = new JTextField();
         durationTextField.setPreferredSize(new Dimension(200, 30));
+        randomInitButton = new JButton("随机初始化");
+        randomInitButton.setPreferredSize(new Dimension(200, 30));
+        randomInitButton.addActionListener(new randomInitActionListener());
+
 
         controlPanel = new JPanel();
         controlPanel.add(startGameButton);
         controlPanel.add(chooseFileButton);
         controlPanel.add(pauseButton);
         controlPanel.add(durationTextField);
+        controlPanel.add(randomInitButton);
 
         getContentPane().add("North", controlPanel);
-        this.setSize(1000, 800);
+        this.setSize(1200, 1000);
     }
 
 
@@ -67,13 +73,13 @@ public class GameOfLifeInterface extends JFrame {
         int[][] matrix = cellMatrix.getMatrix();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                JButton jButton = new JButton();
+                JTextField jTextField = new JTextField();
                 if(matrix[i][j]==1){
-                    jButton.setBackground(Color.BLACK);
+                    jTextField.setBackground(Color.BLACK);
                 }else{
-                    jButton.setBackground(Color.WHITE);
+                    jTextField.setBackground(Color.WHITE);
                 }
-                cellPanel.add(jButton);
+                cellPanel.add(jTextField);
             }
         }
         this.add(cellPanel);
@@ -110,6 +116,20 @@ public class GameOfLifeInterface extends JFrame {
     }
 
     /**
+     * 随机初始化一个状态
+     */
+    private class randomInitActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            // 暂定游戏/游戏未开始
+            running = false;
+            // 初始化随机矩阵
+            cellMatrix = FileUtils.randomInitMatrix();
+            // 初始化cellPanel
+            setCellPanel();
+        }
+    }
+
+    /**
      * 开始游戏
      */
     private class StartGameActionListener implements ActionListener {
@@ -117,7 +137,7 @@ public class GameOfLifeInterface extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (!running) {
-                //获取时间
+                // 获取设定的时间
                 try {
                     duration = Integer.parseInt(durationTextField.getText().trim());
                 } catch (NumberFormatException e1) {
@@ -142,6 +162,8 @@ public class GameOfLifeInterface extends JFrame {
         }
     }
 
+
+
     /**
      * 运行游戏
      */
@@ -149,7 +171,6 @@ public class GameOfLifeInterface extends JFrame {
         @Override
         public void run() {
             while (running) {
-                cellMatrix.transform();
                 updateCellPanel();
                 try {
                     TimeUnit.MILLISECONDS.sleep(duration);
@@ -159,5 +180,7 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
+
+
 
 }
