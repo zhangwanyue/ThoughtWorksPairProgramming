@@ -105,10 +105,9 @@ public class CellMatrix {
 
     /**
      * 某个细胞下一个生命周期的存活状态
-     * @param cellStatus
      * @return
      */
-    public int transformCell(int[][] matrixCopy, int cellStatus, int x, int y){
+    public int transformCell(int[][] matrixCopy, int x, int y){
         return 0;
     }
 
