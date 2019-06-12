@@ -128,7 +128,6 @@ public class GameOfLifeFrame extends JFrame {
                 isOn = true;
             } else if(!isOn && fileInit == false){
                 //todo 随机生成数据
-                System.out.println("abbbbbbbb");
                 cellMatrix = FileUtils.randomInitMatrix();
                 initGridLayout();
                 showMatrix();
@@ -161,7 +160,7 @@ public class GameOfLifeFrame extends JFrame {
         @Override
         public void run() {
 
-            while (!stop) {
+            while (isOn) {
                 cellMatrix.transform();
                 showMatrix();
 
@@ -177,6 +176,5 @@ public class GameOfLifeFrame extends JFrame {
 
     public static void main(String[] args) {
         GameOfLifeFrame gameOfLifeFrame = new GameOfLifeFrame();
-        gameOfLifeFrame.initGridLayout();
     }
 }
