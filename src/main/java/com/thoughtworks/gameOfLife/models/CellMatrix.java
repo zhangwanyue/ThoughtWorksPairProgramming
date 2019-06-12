@@ -88,7 +88,7 @@ public class CellMatrix {
      * @return
      */
     public int countLiveCell(int[][] matrixCopy, int num, int x, int y){
-        if(x>0 && x<this.height && y>0 && y<this.width){
+        if(x>=0 && x<this.height && y>=0 && y<this.width){
             return (num + matrixCopy[x][y]);
         }
         return num;
