@@ -14,7 +14,7 @@ public class FileUtilsTest {
     public final ExpectedException expectedException = ExpectedException.none();
 
     @Before
-    public static void init(){
+    public void init(){
 
     }
 
@@ -30,7 +30,7 @@ public class FileUtilsTest {
                 {0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-        String case1Path = "/home/vera/IdeaProjects/ThoughtWorksPairProgramming/files/case1.txt";
+        String case1Path = "files/case1.txt";
         CellMatrix case1CellMatrix = FileUtils.readFileInitCellMatrix(case1Path);
         // 正确读取高度
         Assert.assertEquals(10, case1CellMatrix.getHeight());
@@ -42,9 +42,9 @@ public class FileUtilsTest {
 
     @Test
     public void whenReadFileNotLegalNumThenException(){
-        String caseExceptionPath = "/home/vera/IdeaProjects/ThoughtWorksPairProgramming/files/caseException.txt";
-        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
+        String caseExceptionPath = "files/caseException.txt";
         expectedException.expect(RuntimeException.class);
+        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
     }
 
 }
