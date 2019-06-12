@@ -100,16 +100,32 @@ public class CellMatrix {
      */
     public CellMatrix transform(){
 
+
         return null;
     }
 
     /**
      * 某个细胞下一个生命周期的存活状态
-     * @param cellStatus
+     * @param
      * @return
      */
-    public int transformCell(int[][] matrixCopy, int cellStatus, int x, int y){
-        return 0;
+    public int transformCell(int[][] matrixCopy, int x, int y){
+        int num = getSurroundLiveCellNum(matrixCopy, x, y);
+        int cellStatus = matrixCopy[x][y];
+        //rule1
+        if(num<2 && cellStatus==1)
+            cellStatus = 0;
+        //rule2
+        if((num==2 || num==3) && cellStatus==1)
+            cellStatus = cellStatus;
+        //rule3
+        if(num>3 && cellStatus==1)
+            cellStatus = 0;
+        //rule4
+        if(num==3 && cellStatus==0)
+            cellStatus = 1;
+
+        return cellStatus;
     }
 
 }
