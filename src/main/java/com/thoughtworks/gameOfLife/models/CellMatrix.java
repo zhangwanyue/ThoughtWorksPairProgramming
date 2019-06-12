@@ -62,21 +62,21 @@ public class CellMatrix {
     public int getSurroundLiveCellNum(int[][] matrixCopy, int x, int y){
         int num = 0;
         //左上
-        num = countLiveCell(num, x-1, y-1);
+        num = countLiveCell(matrixCopy, num, x-1, y-1);
         //上方
-        num = countLiveCell(num, x-1, y);
+        num = countLiveCell(matrixCopy, num, x-1, y);
         //右上
-        num = countLiveCell(num, x-1, y+1);
+        num = countLiveCell(matrixCopy, num, x-1, y+1);
         //左边
-        num = countLiveCell(num, x, y-1);
+        num = countLiveCell(matrixCopy, num, x, y-1);
         //右边
-        num = countLiveCell(num, x, y+1);
+        num = countLiveCell(matrixCopy, num, x, y+1);
         //左下
-        num = countLiveCell(num, x+1, y-1);
+        num = countLiveCell(matrixCopy, num, x+1, y-1);
         //下方
-        num = countLiveCell(num , x+1, y);
+        num = countLiveCell(matrixCopy, num , x+1, y);
         //右下
-        num = countLiveCell(num, x+1, y+1);
+        num = countLiveCell(matrixCopy, num, x+1, y+1);
         return num;
     }
 
@@ -87,9 +87,9 @@ public class CellMatrix {
      * @param y
      * @return
      */
-    public int countLiveCell(int num, int x, int y){
+    public int countLiveCell(int[][] matrixCopy, int num, int x, int y){
         if(x>0 && x<this.height && y>0 && y<this.width){
-            return (num + matrix[x][y]);
+            return (num + matrixCopy[x][y]);
         }
         return num;
     }
@@ -103,5 +103,13 @@ public class CellMatrix {
         return null;
     }
 
+    /**
+     * 某个细胞下一个生命周期的存活状态
+     * @param cellStatus
+     * @return
+     */
+    public int transformCell(int[][] matrixCopy, int cellStatus, int x, int y){
+        return 0;
+    }
 
 }
