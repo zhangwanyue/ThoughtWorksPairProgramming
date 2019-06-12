@@ -11,6 +11,7 @@ public class CellMatrixTest {
 //        System.out.println("init");
     }
 
+
     @Test
     public void getSurroundLiveCellNumTest(){
         String case1Path = "files/case1.txt";
@@ -21,4 +22,6 @@ public class CellMatrixTest {
         Assert.assertEquals(CellMatrix.getSurroundLiveCellNum(case1Matrix, 4, 4), 3);
         Assert.assertEquals(CellMatrix.getSurroundLiveCellNum(case1Matrix, 5, 4), 2);
     }
+
+
 }
