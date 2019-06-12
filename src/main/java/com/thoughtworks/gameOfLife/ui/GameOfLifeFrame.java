@@ -14,6 +14,7 @@ public class GameOfLifeFrame extends JFrame {
 
     //游戏状态
     private boolean isOn = false;
+    private boolean fileInit = false;
     private boolean stop = false;
     //默认动画间隔
     private static final int DEFAULT_DURATION = 200;
@@ -100,7 +101,7 @@ public class GameOfLifeFrame extends JFrame {
                 //游戏状态为未开始
                 isOn = false;
                 startGameButton.setText("开始游戏");
-
+                fileInit = true;
                 String filepath = fileChooser.getSelectedFile().getPath();
                 cellMatrix = FileUtils.readFileInitCellMatrix(filepath);
                 initGridLayout();
@@ -115,8 +116,23 @@ public class GameOfLifeFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!isOn) {
+            if (!isOn && fileInit == true) {
                 //获取时间
+                try {
+                    duration = Integer.parseInt(durationTextField.getText().trim());
+                } catch (NumberFormatException e1) {
+                    duration = DEFAULT_DURATION;
+                }
+
+                new Thread(new GameControlTask()).start();
+                isOn = true;
+            } else if(!isOn && fileInit == false){
+                //todo 随机生成数据
+                System.out.println("abbbbbbbb");
+                cellMatrix = FileUtils.randomInitMatrix();
+                initGridLayout();
+                showMatrix();
+                gridPanel.updateUI();
                 try {
                     duration = Integer.parseInt(durationTextField.getText().trim());
                 } catch (NumberFormatException e1) {
