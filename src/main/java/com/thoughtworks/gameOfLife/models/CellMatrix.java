@@ -1,12 +1,5 @@
 package com.thoughtworks.gameOfLife.models;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import javax.swing.*;
-
 /**
  * Conway's game of life is a cellular automaton devised by the
  * mathematician John Conway.
@@ -45,4 +38,32 @@ public class CellMatrix {
     public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
     }
+
+    /**
+     * 拷贝一个完全相同的matrix出来
+     * @return
+     */
+    public int[][] copyMatrix(){
+        return null;
+    }
+
+    /**
+     * 获取坐标为(x,y)的细胞周围存活的细胞的数量
+     * @param x
+     * @param y
+     * @return
+     */
+    public int getSurroundLiveCellNum(int x, int y){
+        return 0;
+    }
+
+    /**
+     * 下一个生命周期的matrix存活状态
+     * @return
+     */
+    public CellMatrix transform(){
+        return null;
+    }
+
+
 }
