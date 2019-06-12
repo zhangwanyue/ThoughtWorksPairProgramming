@@ -30,5 +30,14 @@ public class CellMatrixTest {
         Assert.assertEquals(case1CellMatrix.getSurroundLiveCellNum(case1MatrixCopy, 5, 4), 2);
     }
 
+    @Test
+    public void transformCellTest(){
+        String rule1Path = "files/rule1.txt";
+        CellMatrix rule1CellMatrix = FileUtils.readFileInitCellMatrix(rule1Path);
+        int[][] rule1MatrixCopy = rule1CellMatrix.copyMatrix();
+        int newStatus = rule1CellMatrix.transformCell(rule1MatrixCopy, 1,1);
+        Assert.assertEquals(newStatus, 0);
+    }
+
 
 }
