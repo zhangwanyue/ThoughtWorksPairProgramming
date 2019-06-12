@@ -40,7 +40,28 @@ public class FileUtilsTest {
 
     @Test
     public void whenReadFileNotLegalNumThenException(){
-        String caseExceptionPath = "files/caseException.txt";
+        String caseExceptionPath = "files/caseException1.txt";
+        expectedException.expect(RuntimeException.class);
+        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
+    }
+
+    @Test
+    public void whenReadFileFormatNotLegalThenException1(){
+        String caseExceptionPath = "files/caseException2.txt";
+        expectedException.expect(RuntimeException.class);
+        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
+    }
+
+    @Test
+    public void whenReadFileFormatNotLegalThenException2() {
+        String caseExceptionPath = "files/caseException3.txt";
+        expectedException.expect(RuntimeException.class);
+        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
+    }
+
+    @Test
+    public void whenReadFileEmptyThenException(){
+        String caseExceptionPath = "files/caseException4.txt";
         expectedException.expect(RuntimeException.class);
         CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
     }

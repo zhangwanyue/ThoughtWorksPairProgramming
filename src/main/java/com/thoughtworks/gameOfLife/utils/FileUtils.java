@@ -28,16 +28,18 @@ public class FileUtils {
             int[][] matrix = new int[height][width];
 
             // 读取剩余的行，直到读入null为文件结束
-            for (int j = 0; j < height; j++) {
+            for (int i = 0; i < height; i++) {
                 String[] row = reader.readLine().split(" ");
+                // 如果宽度不满足要求，抛出异常
                 if (row.length != width) {
-                    throw (new RuntimeException());
+                    throw new RuntimeException();
                 }
-                for (int i = 0; i < width; i++) {
-                    if (!(row[i].equals("0") || row[i].equals("1"))) {
+                for (int j = 0; j < width; j++) {
+                    // 如果矩阵中的数字不是0或者1，抛出异常
+                    if (!(row[j].equals("0") || row[j].equals("1"))) {
                         throw new RuntimeException();
                     }
-                    matrix[j][i] = Integer.parseInt(row[i]);
+                    matrix[i][j] = Integer.parseInt(row[j]);
                 }
             }
             cellMatrix = new CellMatrix(height, width, matrix);

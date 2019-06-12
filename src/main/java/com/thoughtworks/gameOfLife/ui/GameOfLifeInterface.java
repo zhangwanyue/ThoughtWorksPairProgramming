@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class GameOfLifeInterface extends JFrame {
     // 游戏状态
     private volatile boolean running = false;
-    // 默认动画间隔（默认时长为200）
+    // 默认动画间隔（默认时长为200ms）
     private static int DEFAULT_DURATION = 200;
     private int duration = DEFAULT_DURATION;
     // 控件
@@ -42,7 +42,6 @@ public class GameOfLifeInterface extends JFrame {
         randomInitButton.setPreferredSize(new Dimension(200, 30));
         randomInitButton.addActionListener(new randomInitActionListener());
 
-
         controlPanel = new JPanel();
         controlPanel.add(startGameButton);
         controlPanel.add(chooseFileButton);
@@ -53,13 +52,6 @@ public class GameOfLifeInterface extends JFrame {
         getContentPane().add("North", controlPanel);
         this.setSize(1200, 1000);
     }
-
-
-    public static void main(String[] args)
-    {
-       new GameOfLifeInterface().setVisible(true);
-    }
-
 
     /**
      * 使用cellMatrix创建cellPanel布局
@@ -149,7 +141,6 @@ public class GameOfLifeInterface extends JFrame {
         }
     }
 
-
     /**
      * 暂停游戏
      */
@@ -161,8 +152,6 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
-
-
 
     /**
      * 运行游戏
@@ -180,7 +169,4 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
-
-
-
 }
