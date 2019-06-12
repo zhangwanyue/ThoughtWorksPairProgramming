@@ -53,8 +53,40 @@ public class CellMatrix {
      * @param y
      * @return
      */
-    public static int getSurroundLiveCellNum(int[][] matrix, int x, int y){
-        return 0;
+    public int getSurroundLiveCellNum(int[][] matrix, int x, int y){
+
+        int num = 0;
+        //左上
+        num = countLiveCell(num, x-1, y-1);
+        //上方
+        num = countLiveCell(num, x-1, y);
+        //右上
+        num = countLiveCell(num, x-1, y+1);
+        //左边
+        num = countLiveCell(num, x, y-1);
+        //右边
+        num = countLiveCell(num, x, y+1);
+        //左下
+        num = countLiveCell(num, x+1, y-1);
+        //下方
+        num = countLiveCell(num , x+1, y);
+        //右下
+        num = countLiveCell(num, x+1, y+1);
+        return num;
+    }
+
+    /**
+     * 判断该位置是否超过边界，如果没有超过边界，则统计该位置的存活细胞
+     * @param num
+     * @param x
+     * @param y
+     * @return
+     */
+    public int countLiveCell(int num, int x, int y){
+        if(x>0 && x<this.height && y>0 && y<this.width){
+            return (num + matrix[x][y]);
+        }
+        return num;
     }
 
     /**
