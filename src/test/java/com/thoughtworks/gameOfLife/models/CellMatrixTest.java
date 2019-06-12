@@ -3,7 +3,6 @@ package com.thoughtworks.gameOfLife.models;
 import com.thoughtworks.gameOfLife.utils.FileUtils;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CellMatrixTest {
@@ -12,6 +11,13 @@ public class CellMatrixTest {
 //        System.out.println("init");
     }
 
+    @Test
+    public void copyMatrixTest(){
+        String case1Path = "files/case1.txt";
+        CellMatrix case1CellMatrix = FileUtils.readFileInitCellMatrix(case1Path);
+        int[][] case1MatrixCopy = case1CellMatrix.copyMatrix();
+        Assert.assertArrayEquals(case1MatrixCopy, case1CellMatrix.getMatrix());
+    }
 
     @Test
     public void getSurroundLiveCellNumTest(){

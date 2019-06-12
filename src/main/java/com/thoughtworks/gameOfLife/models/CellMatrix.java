@@ -53,8 +53,7 @@ public class CellMatrix {
      * @param y
      * @return
      */
-    public int getSurroundLiveCellNum(int[][] matrix, int x, int y){
-
+    public int getSurroundLiveCellNum(int[][] matrixCopy, int x, int y){
         int num = 0;
         //左上
         num = countLiveCell(num, x-1, y-1);
