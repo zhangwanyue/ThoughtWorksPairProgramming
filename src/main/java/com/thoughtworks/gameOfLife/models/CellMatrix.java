@@ -112,19 +112,32 @@ public class CellMatrix {
     public int transformCell(int[][] matrixCopy, int x, int y){
         int num = getSurroundLiveCellNum(matrixCopy, x, y);
         int cellStatus = matrixCopy[x][y];
-        //rule1
-        if(num<2 && cellStatus==1)
-            cellStatus = 0;
-        //rule2
-        if((num==2 || num==3) && cellStatus==1)
-            cellStatus = cellStatus;
-        //rule3
-        if(num>3 && cellStatus==1)
-            cellStatus = 0;
-        //rule4
-        if(num==3 && cellStatus==0)
-            cellStatus = 1;
 
+        //rule1：当前细胞为存活状态时，当周围的存活细胞低于2个时（不包含2个），该细胞变成死亡状态。（模拟生命数量稀少）
+        if(num<2 && cellStatus==1){
+            cellStatus = 0;
+            return cellStatus;
+        }
+
+        //rule2：当前细胞为存活状态时，当周围有2个或3个存活细胞时，该细胞保持原样。
+        if((num==2 || num==3) && cellStatus==1){
+            cellStatus = cellStatus;
+            return cellStatus;
+        }
+
+        //rule3：当前细胞为存活状态时，当周围有超过3个存活细胞时，该细胞变成死亡状态。（模拟生命数量过多）
+        if(num>3 && cellStatus==1){
+            cellStatus = 0;
+            return cellStatus;
+        }
+
+        //rule4：当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。（模拟繁殖）
+        if(num==3 && cellStatus==0){
+            cellStatus = 1;
+            return cellStatus;
+        }
+
+        //rule5：当前细胞为死亡状态时，当周围有非3个存活细胞时，该细胞状态不变
         return cellStatus;
     }
 
