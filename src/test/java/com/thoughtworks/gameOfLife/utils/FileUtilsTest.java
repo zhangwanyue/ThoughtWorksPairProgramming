@@ -3,9 +3,16 @@ package com.thoughtworks.gameOfLife.utils;
 import com.thoughtworks.gameOfLife.models.CellMatrix;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.io.File;
 
 public class FileUtilsTest {
+    @Rule
+    public final ExpectedException expectedException = ExpectedException.none();
+
     @Before
     public static void init(){
 
@@ -33,5 +40,11 @@ public class FileUtilsTest {
         Assert.assertArrayEquals(case1CellMatrix.getMatrix(), case1Matrix);
     }
 
+    @Test
+    public void whenReadFileNotLegalNumThenException(){
+        String caseExceptionPath = "/home/vera/IdeaProjects/ThoughtWorksPairProgramming/files/caseException.txt";
+        CellMatrix caseExceptionCellMatrix = FileUtils.readFileInitCellMatrix(caseExceptionPath);
+        expectedException.expect(RuntimeException.class);
+    }
 
 }
