@@ -14,9 +14,11 @@
 可以把最初的细胞结构定义为种子，当所有在种子中的细胞同时被以上规则处理后，可以得到第一代细胞图。按规则继续处理当前的细胞图，可以得到下一代的细胞图，周而复始。
 
 ## 效果图展示
-![image]
+
+![效果图]
 (https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/录屏1.gif）
-![image]
+
+![效果图]
 (https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/Jietu20190613-101518.jpg)
 
 ## 项目架构
