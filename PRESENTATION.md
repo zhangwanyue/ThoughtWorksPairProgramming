@@ -71,6 +71,22 @@ TDD的迭代开发步骤：红灯 -> 绿灯 -> 重构
 
 1)规范的项目包结构的命名
 
+```
+- files（测试case）
+- src
+    - main.java
+        - com.thoughtworks.gameOfLife
+                - models（细胞主体类及核心逻辑）
+                - ui（用户界面）
+                - utils（基础类）
+            - Main方法（入口函数）
+    - test.java
+        - com.thoughtworks.gameOfLife
+                - models（细胞主体类及核心逻辑）
+                - utils（基础类）
+            - SuiteTest（测试套件）  
+```
+
 2)有意义的项目类名、方法名、变量名
 
 3)测试方法的命名部分采用了BDD的`given/when/then`语法（比如`whenReadFileNotLegalNumThenException`），部分采用了`测试方法名+Test`的命名方式
