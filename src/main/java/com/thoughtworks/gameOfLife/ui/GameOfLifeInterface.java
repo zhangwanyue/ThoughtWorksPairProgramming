@@ -94,6 +94,7 @@ public class GameOfLifeInterface extends JFrame {
         cellPanel.setLayout(new GridLayout(rows, cols));
 
         int[][] matrix = cellMatrix.getMatrix();
+        jTextFieldMatrix = new JTextField[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JTextField jTextField = new JTextField();
@@ -114,7 +115,7 @@ public class GameOfLifeInterface extends JFrame {
      * 显示cellPanel的更新
      */
     private void updateCellPanel(){
-//        cellMatrix.transform();
+        cellMatrix.transform();
 //        setCellPanel();
         int rows = cellMatrix.getHeight();
         int cols = cellMatrix.getWidth();
