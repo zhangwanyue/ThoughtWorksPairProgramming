@@ -15,10 +15,10 @@
 
 ## 效果图展示
 
-![效果图]
+![image]
 (https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/录屏1.gif）
 
-![效果图]
+![image]
 (https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/Jietu20190613-101518.jpg)
 
 ## 项目架构
