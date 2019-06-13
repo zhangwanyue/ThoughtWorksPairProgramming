@@ -66,3 +66,5 @@ cd TWGameOfLife-1.0-SNAPSHOT/bin
 ./gradlew test jacocoTestReport
 ```
 该命令会生成一个代码覆盖率报告，位置在：`build/reports/jacoco/test/html/index.html`
+
+
