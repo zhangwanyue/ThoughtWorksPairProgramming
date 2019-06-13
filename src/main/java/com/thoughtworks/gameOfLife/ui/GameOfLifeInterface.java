@@ -13,7 +13,7 @@ public class GameOfLifeInterface extends JFrame {
     // 游戏状态
     private volatile boolean running = false;
     // 默认动画间隔（默认时长为200ms）
-    private static int DEFAULT_DURATION = 200;
+    private final static int DEFAULT_DURATION = 200;
     private int duration = DEFAULT_DURATION;
     // 控件
     private JPanel controlPanel;
@@ -27,10 +27,13 @@ public class GameOfLifeInterface extends JFrame {
     private JComboBox colorComboBox;
     private JLabel colorComboBoxLabel;
     // 配色
-    private Color DEFAULT_LIVECOLOR = Color.BLACK;
-    private Color DEFAULT_DEADCOLOR = Color.WHITE;
+    private final static Color DEFAULT_LIVECOLOR = Color.BLACK;
+    private final static Color DEFAULT_DEADCOLOR = Color.WHITE;
     private volatile Color liveColor = DEFAULT_LIVECOLOR;
     private volatile Color deadColor = DEFAULT_DEADCOLOR;
+    private final static String WHITE_BLACK = "黑白";
+    private final static String RED_BLADK = "红黑";
+    private final static String YELLOW_BLUE = "黄蓝";
     // cellMatrix
     private volatile CellMatrix cellMatrix;
 
@@ -59,9 +62,9 @@ public class GameOfLifeInterface extends JFrame {
         colorComboBoxLabel = new JLabel("更改配色：");
 
         colorComboBox=new JComboBox();
-        colorComboBox.addItem("黑白");
-        colorComboBox.addItem("红黑");
-        colorComboBox.addItem("黄蓝");
+        colorComboBox.addItem(WHITE_BLACK);
+        colorComboBox.addItem(RED_BLADK);
+        colorComboBox.addItem(YELLOW_BLUE);
         colorComboBox.addActionListener(new ChangeColorActionListener());
         colorComboBox.setPreferredSize(new Dimension(100, 30));
 
@@ -190,15 +193,15 @@ public class GameOfLifeInterface extends JFrame {
             }
             String s = (String) colorComboBox.getSelectedItem();
             switch (s) {
-                case "黑白":
+                case WHITE_BLACK:
                     liveColor = Color.BLACK;
                     deadColor = Color.WHITE;
                     break;
-                case "红黑":
+                case RED_BLADK:
                     liveColor = Color.RED;
                     deadColor = Color.BLACK;
                     break;
-                case "黄蓝":
+                case YELLOW_BLUE:
                     liveColor = Color.YELLOW;
                     deadColor = Color.BLUE;
                     break;
