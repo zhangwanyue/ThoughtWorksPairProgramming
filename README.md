@@ -16,6 +16,9 @@
 ## 效果图展示
 ![image]
 (https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/录屏1.gif）
+![image]
+(https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/Jietu20190613-101518.jpg)
+
 ## 项目架构
 
 * 使用`JUnit`进行TDD开发
