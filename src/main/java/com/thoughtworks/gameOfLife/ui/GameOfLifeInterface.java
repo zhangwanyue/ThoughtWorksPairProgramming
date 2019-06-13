@@ -23,34 +23,60 @@ public class GameOfLifeInterface extends JFrame {
     private JButton pauseButton;
     private JButton randomInitButton;
     private JTextField durationTextField;
+    private JLabel durationLabel;
+    private JComboBox colorComboBox;
+    private JLabel colorComboBoxLabel;
+    // 配色
+    private Color DEFAULT_LIVECOLOR = Color.BLACK;
+    private Color DEFAULT_DEADCOLOR = Color.WHITE;
+    private volatile Color liveColor = DEFAULT_LIVECOLOR;
+    private volatile Color deadColor = DEFAULT_DEADCOLOR;
     // cellMatrix
     private volatile CellMatrix cellMatrix;
 
     public GameOfLifeInterface() throws HeadlessException {
-        startGameButton = new JButton("开始游戏");
-        startGameButton.setPreferredSize(new Dimension(200, 30));
-        startGameButton.addActionListener(new StartGameActionListener());
         chooseFileButton = new JButton("选择文件");
         chooseFileButton.setPreferredSize(new Dimension(200, 30));
         chooseFileButton.addActionListener(new ChooseFileActionListener());
+
+        startGameButton = new JButton("开始游戏");
+        startGameButton.setPreferredSize(new Dimension(200, 30));
+        startGameButton.addActionListener(new StartGameActionListener());
+
         pauseButton = new JButton("暂停游戏");
         pauseButton.setPreferredSize(new Dimension(200, 30));
-        pauseButton.addActionListener(new pauseGameActionListener());
+        pauseButton.addActionListener(new PauseGameActionListener());
+
         durationTextField = new JTextField();
         durationTextField.setPreferredSize(new Dimension(200, 30));
+
+        durationLabel = new JLabel("间隔时间：");
+
         randomInitButton = new JButton("随机初始化");
         randomInitButton.setPreferredSize(new Dimension(200, 30));
-        randomInitButton.addActionListener(new randomInitActionListener());
+        randomInitButton.addActionListener(new RandomInitActionListener());
+
+        colorComboBoxLabel = new JLabel("更改配色：");
+
+        colorComboBox=new JComboBox();
+        colorComboBox.addItem("黑白");
+        colorComboBox.addItem("红黑");
+        colorComboBox.addItem("黄蓝");
+        colorComboBox.addActionListener(new ChangeColorActionListener());
+        colorComboBox.setPreferredSize(new Dimension(100, 30));
 
         controlPanel = new JPanel();
-        controlPanel.add(startGameButton);
         controlPanel.add(chooseFileButton);
+        controlPanel.add(startGameButton);
         controlPanel.add(pauseButton);
+        controlPanel.add(durationLabel);
         controlPanel.add(durationTextField);
         controlPanel.add(randomInitButton);
+        controlPanel.add(colorComboBoxLabel);
+        controlPanel.add(colorComboBox);
 
         getContentPane().add("North", controlPanel);
-        this.setSize(1200, 1000);
+        this.setSize(1400, 1000);
     }
 
     /**
@@ -67,9 +93,9 @@ public class GameOfLifeInterface extends JFrame {
             for (int j = 0; j < cols; j++) {
                 JTextField jTextField = new JTextField();
                 if(matrix[i][j]==1){
-                    jTextField.setBackground(Color.BLACK);
+                    jTextField.setBackground(liveColor);
                 }else{
-                    jTextField.setBackground(Color.WHITE);
+                    jTextField.setBackground(deadColor);
                 }
                 cellPanel.add(jTextField);
             }
@@ -110,7 +136,7 @@ public class GameOfLifeInterface extends JFrame {
     /**
      * 随机初始化一个状态
      */
-    private class randomInitActionListener implements ActionListener{
+    private class RandomInitActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             // 暂定游戏/游戏未开始
             running = false;
@@ -144,7 +170,7 @@ public class GameOfLifeInterface extends JFrame {
     /**
      * 暂停游戏
      */
-    private class pauseGameActionListener implements ActionListener{
+    private class PauseGameActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
             if(running){
@@ -152,6 +178,37 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
+
+    /**
+     * 更换配色
+     */
+    private class ChangeColorActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            running = false;
+            String s = (String) colorComboBox.getSelectedItem();
+            switch (s) {
+                case "黑白":
+                    liveColor = Color.BLACK;
+                    deadColor = Color.WHITE;
+                    break;
+                case "红黑":
+                    liveColor = Color.RED;
+                    deadColor = Color.BLACK;
+                    break;
+                case "黄蓝":
+                    liveColor = Color.YELLOW;
+                    deadColor = Color.BLUE;
+                    break;
+                default:
+                    liveColor = Color.BLACK;
+                    deadColor = Color.WHITE;
+                    break;
+            }
+            running = true;
+        }
+    };
+
 
     /**
      * 运行游戏
@@ -169,4 +226,6 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
+
+
 }
