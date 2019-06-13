@@ -13,7 +13,8 @@
 * 当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。（模拟繁殖）
 可以把最初的细胞结构定义为种子，当所有在种子中的细胞同时被以上规则处理后，可以得到第一代细胞图。按规则继续处理当前的细胞图，可以得到下一代的细胞图，周而复始。
 
-
+## 效果图展示
+![image](/Users/Macbook/workspace/ThoughtWorksPairProgramming/build/image/录屏1.mp4）
 ## 项目架构
 
 * 使用`JUnit`进行TDD开发
@@ -66,3 +67,5 @@ cd TWGameOfLife-1.0-SNAPSHOT/bin
 ./gradlew test jacocoTestReport
 ```
 该命令会生成一个代码覆盖率报告，位置在：`build/reports/jacoco/test/html/index.html`
+
+
