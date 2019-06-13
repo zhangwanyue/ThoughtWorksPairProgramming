@@ -101,6 +101,46 @@ TDD的迭代开发步骤：红灯 -> 绿灯 -> 重构
 
 * 使用`jacoco`进行测试覆盖率的检查
 
+#### 本地运行
+
+1. 直接点击`Run Main`运行
+
+2. `./gradlew run`运行
+
+#### 打包、部署、运行
+
+* 打包
+```bash
+./gradlew assembleDist
+```
+* 解压
+```bash
+cd build/distributions/
+unzip TWGameOfLife-1.0-SNAPSHOT.zip
+cd TWGameOfLife-1.0-SNAPSHOT/bin
+```
+* 运行
+```bash
+./ThoughtWorksPairProgramming
+```
+
+#### 运行测试及代码覆盖率检查
+
+* 运行全部测试
+
+```bash
+./gradlew test
+```
+该命令不仅会运行全部测试，并且会生成一个代码测试报告，位置在：`build/reports/tests/test/index.html`
+
+或者手动点击`com.thoughtworks.gameOfLife.SuiteTest`运行全部测试
+
+* 代码覆盖率检查
+```bash
+./gradlew test jacocoTestReport
+```
+该命令会生成一个代码覆盖率报告，位置在：`build/reports/jacoco/test/html/index.html`
+
 ### 待改进的地方
 
 * UI部分的测试编写难度大，没有使用TDD进行开发
