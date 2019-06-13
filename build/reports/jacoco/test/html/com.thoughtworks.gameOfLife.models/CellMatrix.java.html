@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CellMatrix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ThoughtWorksPairProgramming</a> &gt; <a href="index.source.html" class="el_package">com.thoughtworks.gameOfLife.models</a> &gt; <span class="el_source">CellMatrix.java</span></div><h1>CellMatrix.java</h1><pre class="source lang-java linenums">package com.thoughtworks.gameOfLife.models;
+
+/**
+ * Conway's game of life is a cellular automaton devised by the
+ * mathematician John Conway.
+ */
+public class CellMatrix {
+    private int height;
+    private int width;
+    private int[][] matrix;
+
+<span class="fc" id="L12">    public CellMatrix(int height, int width, int[][] matrix) {</span>
+<span class="fc" id="L13">        this.height = height;</span>
+<span class="fc" id="L14">        this.width = width;</span>
+<span class="fc" id="L15">        this.matrix = matrix;</span>
+<span class="fc" id="L16">    }</span>
+
+    public int getHeight() {
+<span class="fc" id="L19">        return height;</span>
+    }
+
+    public void setHeight(int height) {
+<span class="nc" id="L23">        this.height = height;</span>
+<span class="nc" id="L24">    }</span>
+
+    public int getWidth() {
+<span class="fc" id="L27">        return width;</span>
+    }
+
+    public void setWidth(int width) {
+<span class="nc" id="L31">        this.width = width;</span>
+<span class="nc" id="L32">    }</span>
+
+    public int[][] getMatrix() {
+<span class="fc" id="L35">        return matrix;</span>
+    }
+
+    public void setMatrix(int[][] matrix) {
+<span class="nc" id="L39">        this.matrix = matrix;</span>
+<span class="nc" id="L40">    }</span>
+
+    /**
+     * 拷贝一个完全相同的matrix出来
+     * @return
+     */
+    public int[][] copyMatrix(){
+<span class="fc" id="L47">        int[][] copy_matrix = new int[height][width];</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for(int i=0; i&lt;height; i++){</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for(int j=0; j&lt;width; j++){</span>
+<span class="fc" id="L50">                copy_matrix[i][j] = matrix[i][j];</span>
+            }
+        }
+<span class="fc" id="L53">        return copy_matrix;</span>
+    }
+
+    /**
+     * 获取坐标为(x,y)的细胞周围存活的细胞的数量
+     * @param x
+     * @param y
+     * @return
+     */
+    public int getSurroundLiveCellNum(int[][] matrixCopy, int x, int y){
+<span class="fc" id="L63">        int num = 0;</span>
+        //左上
+<span class="fc" id="L65">        num = countLiveCell(matrixCopy, num, x-1, y-1);</span>
+        //上方
+<span class="fc" id="L67">        num = countLiveCell(matrixCopy, num, x-1, y);</span>
+        //右上
+<span class="fc" id="L69">        num = countLiveCell(matrixCopy, num, x-1, y+1);</span>
+        //左边
+<span class="fc" id="L71">        num = countLiveCell(matrixCopy, num, x, y-1);</span>
+        //右边
+<span class="fc" id="L73">        num = countLiveCell(matrixCopy, num, x, y+1);</span>
+        //左下
+<span class="fc" id="L75">        num = countLiveCell(matrixCopy, num, x+1, y-1);</span>
+        //下方
+<span class="fc" id="L77">        num = countLiveCell(matrixCopy, num , x+1, y);</span>
+        //右下
+<span class="fc" id="L79">        num = countLiveCell(matrixCopy, num, x+1, y+1);</span>
+<span class="fc" id="L80">        return num;</span>
+    }
+
+    /**
+     * 判断该位置是否超过边界，如果没有超过边界，则统计该位置的存活细胞
+     * @param num
+     * @param x
+     * @param y
+     * @return
+     */
+    public int countLiveCell(int[][] matrixCopy, int num, int x, int y){
+<span class="fc bfc" id="L91" title="All 8 branches covered.">        if(x&gt;=0 &amp;&amp; x&lt;this.height &amp;&amp; y&gt;=0 &amp;&amp; y&lt;this.width){</span>
+<span class="fc" id="L92">            return (num + matrixCopy[x][y]);</span>
+        }
+<span class="fc" id="L94">        return num;</span>
+    }
+
+    /**
+     * 下一个生命周期的matrix存活状态
+     * @return
+     */
+    public CellMatrix transform(){
+<span class="fc" id="L102">        int[][] copy_matrix = copyMatrix();</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        for(int i=0; i&lt;height; i++){</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">            for(int j=0; j&lt;width; j++){</span>
+<span class="fc" id="L105">                matrix[i][j] = transformCell(copy_matrix, i, j);</span>
+            }
+        }
+<span class="fc" id="L108">        return this;</span>
+    }
+
+    /**
+     * 某个细胞下一个生命周期的存活状态
+     * @param
+     * @return
+     */
+    public int transformCell(int[][] matrixCopy, int x, int y){
+<span class="fc" id="L117">        int num = getSurroundLiveCellNum(matrixCopy, x, y);</span>
+<span class="fc" id="L118">        int cellStatus = matrixCopy[x][y];</span>
+
+        //rule1：当前细胞为存活状态时，当周围的存活细胞低于2个时（不包含2个），该细胞变成死亡状态。（模拟生命数量稀少）
+<span class="fc bfc" id="L121" title="All 4 branches covered.">        if(num&lt;2 &amp;&amp; cellStatus==1){</span>
+<span class="fc" id="L122">            cellStatus = 0;</span>
+<span class="fc" id="L123">            return cellStatus;</span>
+        }
+
+        //rule2：当前细胞为存活状态时，当周围有2个或3个存活细胞时，该细胞保持原样。
+<span class="fc bfc" id="L127" title="All 6 branches covered.">        if((num==2 || num==3) &amp;&amp; cellStatus==1){</span>
+<span class="fc" id="L128">            cellStatus = cellStatus;</span>
+<span class="fc" id="L129">            return cellStatus;</span>
+        }
+
+        //rule3：当前细胞为存活状态时，当周围有超过3个存活细胞时，该细胞变成死亡状态。（模拟生命数量过多）
+<span class="pc bpc" id="L133" title="1 of 4 branches missed.">        if(num&gt;3 &amp;&amp; cellStatus==1){</span>
+<span class="fc" id="L134">            cellStatus = 0;</span>
+<span class="fc" id="L135">            return cellStatus;</span>
+        }
+
+        //rule4：当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。（模拟繁殖）
+<span class="pc bpc" id="L139" title="1 of 4 branches missed.">        if(num==3 &amp;&amp; cellStatus==0){</span>
+<span class="fc" id="L140">            cellStatus = 1;</span>
+<span class="fc" id="L141">            return cellStatus;</span>
+        }
+
+        //rule5：当前细胞为死亡状态时，当周围有非3个存活细胞时，该细胞状态不变
+<span class="fc" id="L145">        return cellStatus;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

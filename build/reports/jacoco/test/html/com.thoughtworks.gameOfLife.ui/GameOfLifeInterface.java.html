@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameOfLifeInterface.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ThoughtWorksPairProgramming</a> &gt; <a href="index.source.html" class="el_package">com.thoughtworks.gameOfLife.ui</a> &gt; <span class="el_source">GameOfLifeInterface.java</span></div><h1>GameOfLifeInterface.java</h1><pre class="source lang-java linenums">package com.thoughtworks.gameOfLife.ui;
+
+import com.thoughtworks.gameOfLife.models.CellMatrix;
+import com.thoughtworks.gameOfLife.utils.FileUtils;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+
+public class GameOfLifeInterface extends JFrame {
+    // 游戏状态
+<span class="nc" id="L14">    private volatile boolean running = false;</span>
+    // 默认动画间隔（默认时长为200ms）
+<span class="nc" id="L16">    private static int DEFAULT_DURATION = 200;</span>
+<span class="nc" id="L17">    private int duration = DEFAULT_DURATION;</span>
+    // 控件
+    private JPanel controlPanel;
+    private JPanel cellPanel;
+    private JButton startGameButton;
+    private JButton chooseFileButton;
+    private JButton pauseButton;
+    private JButton randomInitButton;
+    private JTextField durationTextField;
+    // cellMatrix
+    private volatile CellMatrix cellMatrix;
+
+<span class="nc" id="L29">    public GameOfLifeInterface() throws HeadlessException {</span>
+<span class="nc" id="L30">        startGameButton = new JButton(&quot;开始游戏&quot;);</span>
+<span class="nc" id="L31">        startGameButton.setPreferredSize(new Dimension(200, 30));</span>
+<span class="nc" id="L32">        startGameButton.addActionListener(new StartGameActionListener());</span>
+<span class="nc" id="L33">        chooseFileButton = new JButton(&quot;选择文件&quot;);</span>
+<span class="nc" id="L34">        chooseFileButton.setPreferredSize(new Dimension(200, 30));</span>
+<span class="nc" id="L35">        chooseFileButton.addActionListener(new ChooseFileActionListener());</span>
+<span class="nc" id="L36">        pauseButton = new JButton(&quot;暂停游戏&quot;);</span>
+<span class="nc" id="L37">        pauseButton.setPreferredSize(new Dimension(200, 30));</span>
+<span class="nc" id="L38">        pauseButton.addActionListener(new pauseGameActionListener());</span>
+<span class="nc" id="L39">        durationTextField = new JTextField();</span>
+<span class="nc" id="L40">        durationTextField.setPreferredSize(new Dimension(200, 30));</span>
+<span class="nc" id="L41">        randomInitButton = new JButton(&quot;随机初始化&quot;);</span>
+<span class="nc" id="L42">        randomInitButton.setPreferredSize(new Dimension(200, 30));</span>
+<span class="nc" id="L43">        randomInitButton.addActionListener(new randomInitActionListener());</span>
+
+<span class="nc" id="L45">        controlPanel = new JPanel();</span>
+<span class="nc" id="L46">        controlPanel.add(startGameButton);</span>
+<span class="nc" id="L47">        controlPanel.add(chooseFileButton);</span>
+<span class="nc" id="L48">        controlPanel.add(pauseButton);</span>
+<span class="nc" id="L49">        controlPanel.add(durationTextField);</span>
+<span class="nc" id="L50">        controlPanel.add(randomInitButton);</span>
+
+<span class="nc" id="L52">        getContentPane().add(&quot;North&quot;, controlPanel);</span>
+<span class="nc" id="L53">        this.setSize(1200, 1000);</span>
+<span class="nc" id="L54">    }</span>
+
+    /**
+     * 使用cellMatrix创建cellPanel布局
+     */
+    private void setCellPanel() {
+<span class="nc" id="L60">        int rows = cellMatrix.getHeight();</span>
+<span class="nc" id="L61">        int cols = cellMatrix.getWidth();</span>
+<span class="nc" id="L62">        cellPanel = new JPanel();</span>
+<span class="nc" id="L63">        cellPanel.setLayout(new GridLayout(rows, cols));</span>
+
+<span class="nc" id="L65">        int[][] matrix = cellMatrix.getMatrix();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        for (int i = 0; i &lt; rows; i++) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            for (int j = 0; j &lt; cols; j++) {</span>
+<span class="nc" id="L68">                JTextField jTextField = new JTextField();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                if(matrix[i][j]==1){</span>
+<span class="nc" id="L70">                    jTextField.setBackground(Color.BLACK);</span>
+                }else{
+<span class="nc" id="L72">                    jTextField.setBackground(Color.WHITE);</span>
+                }
+<span class="nc" id="L74">                cellPanel.add(jTextField);</span>
+            }
+        }
+<span class="nc" id="L77">        this.add(cellPanel);</span>
+<span class="nc" id="L78">        cellPanel.updateUI();</span>
+<span class="nc" id="L79">    }</span>
+
+    /**
+     * 显示cellPanel的更新
+     */
+    private void updateCellPanel(){
+<span class="nc" id="L85">        cellMatrix.transform();</span>
+<span class="nc" id="L86">        setCellPanel();</span>
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * 选择文件
+     */
+<span class="nc" id="L92">    private class ChooseFileActionListener implements ActionListener {</span>
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // 暂定游戏/游戏未开始
+<span class="nc" id="L96">            running = false;</span>
+<span class="nc" id="L97">            JFileChooser fileChooser = new JFileChooser(&quot;.&quot;);</span>
+<span class="nc" id="L98">            fileChooser.setDialogTitle(&quot;请选择初始配置文件&quot;);</span>
+<span class="nc" id="L99">            int returnVal = fileChooser.showOpenDialog(null);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (returnVal == JFileChooser.APPROVE_OPTION) {</span>
+                //读取文件，初始化cellMatrix
+<span class="nc" id="L102">                String filepath = fileChooser.getSelectedFile().getPath();</span>
+<span class="nc" id="L103">                cellMatrix = FileUtils.readFileInitCellMatrix(filepath);</span>
+                //初始化cellPanel
+<span class="nc" id="L105">                setCellPanel();</span>
+            }
+<span class="nc" id="L107">        }</span>
+    }
+
+    /**
+     * 随机初始化一个状态
+     */
+<span class="nc" id="L113">    private class randomInitActionListener implements ActionListener{</span>
+        public void actionPerformed(ActionEvent e){
+            // 暂定游戏/游戏未开始
+<span class="nc" id="L116">            running = false;</span>
+            // 初始化随机矩阵
+<span class="nc" id="L118">            cellMatrix = FileUtils.randomInitMatrix();</span>
+            // 初始化cellPanel
+<span class="nc" id="L120">            setCellPanel();</span>
+<span class="nc" id="L121">        }</span>
+    }
+
+    /**
+     * 开始游戏
+     */
+<span class="nc" id="L127">    private class StartGameActionListener implements ActionListener {</span>
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (!running) {</span>
+                // 获取设定的时间
+                try {
+<span class="nc" id="L134">                    duration = Integer.parseInt(durationTextField.getText().trim());</span>
+<span class="nc" id="L135">                } catch (NumberFormatException e1) {</span>
+<span class="nc" id="L136">                    duration = DEFAULT_DURATION;</span>
+<span class="nc" id="L137">                }</span>
+<span class="nc" id="L138">                new Thread(new GameControlTask()).start();</span>
+<span class="nc" id="L139">                running = true;</span>
+            }
+<span class="nc" id="L141">        }</span>
+    }
+
+    /**
+     * 暂停游戏
+     */
+<span class="nc" id="L147">    private class pauseGameActionListener implements ActionListener{</span>
+        @Override
+        public void actionPerformed(ActionEvent e){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if(running){</span>
+<span class="nc" id="L151">                running = false;</span>
+            }
+<span class="nc" id="L153">        }</span>
+    }
+
+    /**
+     * 运行游戏
+     */
+<span class="nc" id="L159">    private class GameControlTask implements Runnable {</span>
+        @Override
+        public void run() {
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            while (running) {</span>
+<span class="nc" id="L163">                updateCellPanel();</span>
+                try {
+<span class="nc" id="L165">                    TimeUnit.MILLISECONDS.sleep(duration);</span>
+<span class="nc" id="L166">                } catch (InterruptedException ex) {</span>
+<span class="nc" id="L167">                    ex.printStackTrace();</span>
+<span class="nc" id="L168">                }</span>
+            }
+<span class="nc" id="L170">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
