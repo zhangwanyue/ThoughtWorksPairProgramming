@@ -26,6 +26,8 @@ public class GameOfLifeInterface extends JFrame {
     private JLabel durationLabel;
     private JComboBox colorComboBox;
     private JLabel colorComboBoxLabel;
+    // 网格
+    private JTextField[][] jTextFieldMatrix;
     // 配色
     private final static Color DEFAULT_LIVECOLOR = Color.BLACK;
     private final static Color DEFAULT_DEADCOLOR = Color.WHITE;
@@ -100,6 +102,7 @@ public class GameOfLifeInterface extends JFrame {
                 }else{
                     jTextField.setBackground(deadColor);
                 }
+                jTextFieldMatrix[i][j] = jTextField;
                 cellPanel.add(jTextField);
             }
         }
@@ -111,8 +114,20 @@ public class GameOfLifeInterface extends JFrame {
      * 显示cellPanel的更新
      */
     private void updateCellPanel(){
-        cellMatrix.transform();
-        setCellPanel();
+//        cellMatrix.transform();
+//        setCellPanel();
+        int rows = cellMatrix.getHeight();
+        int cols = cellMatrix.getWidth();
+        int[][] matrix = cellMatrix.getMatrix();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 1) {
+                    jTextFieldMatrix[i][j].setBackground(liveColor);
+                } else {
+                    jTextFieldMatrix[i][j].setBackground(deadColor);
+                }
+            }
+        }
     }
 
     /**
@@ -221,6 +236,7 @@ public class GameOfLifeInterface extends JFrame {
         @Override
         public void run() {
             while (running) {
+                setCellPanel();
                 updateCellPanel();
                 try {
                     TimeUnit.MILLISECONDS.sleep(duration);
