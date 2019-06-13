@@ -15,7 +15,7 @@
 
 ## 效果图展示
 
-![image](https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/录屏1.gif）
+![image](https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/%E5%BD%95%E5%B1%8F1.gif)
 
 ![image](https://github.com/zhangwanyue/ThoughtWorksPairProgramming/blob/master/files/image/Jietu20190613-101518.jpg)
 
