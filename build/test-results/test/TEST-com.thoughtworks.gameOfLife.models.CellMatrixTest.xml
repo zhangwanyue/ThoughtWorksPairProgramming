@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.thoughtworks.gameOfLife.models.CellMatrixTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2019-06-12T18:27:18" hostname="vera" time="0.218">
+<testsuite name="com.thoughtworks.gameOfLife.models.CellMatrixTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2019-06-13T03:57:45" hostname="vera" time="0.1">
   <properties/>
   <testcase name="copyMatrixTest" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformCellTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.014"/>
+  <testcase name="transformCellTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.007"/>
   <testcase name="transformCellTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.016"/>
-  <testcase name="transformCellTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.01"/>
-  <testcase name="transformCellTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.132"/>
-  <testcase name="transformCellTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.012"/>
+  <testcase name="transformCellTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.011"/>
+  <testcase name="transformCellTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.011"/>
+  <testcase name="transformCellTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.01"/>
   <testcase name="getSurroundLiveCellNumTest" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <testcase name="getSurroundLiveCellNumTest2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
   <testcase name="transformTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
   <testcase name="transformTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
-  <testcase name="transformTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="copyMatrixTest" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformCellTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
-  <testcase name="transformCellTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
+  <testcase name="transformTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.004"/>
+  <testcase name="transformTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.004"/>
+  <testcase name="transformTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
+  <testcase name="copyMatrixTest" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.002"/>
+  <testcase name="transformCellTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
+  <testcase name="transformCellTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
   <testcase name="transformCellTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
   <testcase name="transformCellTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformCellTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
+  <testcase name="transformCellTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <testcase name="getSurroundLiveCellNumTest" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <testcase name="getSurroundLiveCellNumTest2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
   <testcase name="transformTestRule1" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.0"/>
+  <testcase name="transformTestRule2" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <testcase name="transformTestRule3" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
-  <testcase name="transformTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.002"/>
+  <testcase name="transformTestRule4" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <testcase name="transformTestRule5" classname="com.thoughtworks.gameOfLife.models.CellMatrixTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
