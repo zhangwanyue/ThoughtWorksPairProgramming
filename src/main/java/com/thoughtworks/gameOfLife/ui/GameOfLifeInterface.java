@@ -67,11 +67,11 @@ public class GameOfLifeInterface extends JFrame {
 
         controlPanel = new JPanel();
         controlPanel.add(chooseFileButton);
-        controlPanel.add(startGameButton);
-        controlPanel.add(pauseButton);
+        controlPanel.add(randomInitButton);
         controlPanel.add(durationLabel);
         controlPanel.add(durationTextField);
-        controlPanel.add(randomInitButton);
+        controlPanel.add(startGameButton);
+        controlPanel.add(pauseButton);
         controlPanel.add(colorComboBoxLabel);
         controlPanel.add(colorComboBox);
 
@@ -185,7 +185,9 @@ public class GameOfLifeInterface extends JFrame {
     private class ChangeColorActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            running = false;
+            if(running){
+                running = false; // 更改配色时必须暂停运行
+            }
             String s = (String) colorComboBox.getSelectedItem();
             switch (s) {
                 case "黑白":
@@ -205,9 +207,8 @@ public class GameOfLifeInterface extends JFrame {
                     deadColor = Color.WHITE;
                     break;
             }
-            running = true;
         }
-    };
+    }
 
 
     /**
@@ -226,6 +227,5 @@ public class GameOfLifeInterface extends JFrame {
             }
         }
     }
-
 
 }

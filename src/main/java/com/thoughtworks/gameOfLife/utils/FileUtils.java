@@ -61,8 +61,8 @@ public class FileUtils {
      * @return
      */
     public static CellMatrix randomInitMatrix(){
-        int random_height = (int)(Math.random()*30);
-        int random_width = (int)(Math.random()*30);
+        int random_height = (int)(Math.random()*50);
+        int random_width = (int)(Math.random()*50);
 
         int[][] matrix_random = new int[random_height][random_width];
         for(int i=0; i<random_height; i++){
