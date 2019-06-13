@@ -72,7 +72,7 @@ TDD的迭代开发步骤：红灯 -> 绿灯 -> 重构
 1)规范的项目包结构的命名
 
 ```
-- files（测试case）
+- files（测试case文件）
 - src
     - main.java
         - com.thoughtworks.gameOfLife
