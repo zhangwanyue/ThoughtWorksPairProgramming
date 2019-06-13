@@ -116,7 +116,6 @@ public class GameOfLifeInterface extends JFrame {
      */
     private void updateCellPanel(){
         cellMatrix.transform();
-//        setCellPanel();
         int rows = cellMatrix.getHeight();
         int cols = cellMatrix.getWidth();
         int[][] matrix = cellMatrix.getMatrix();
